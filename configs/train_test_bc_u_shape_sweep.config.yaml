@@ -1,0 +1,55 @@
+name: your run name
+project: your project name
+entity: your team or user entity
+
+# Training
+device: "cuda"
+wandb_log_interval: 1
+save_interval: 80
+loss_params: {} # params configured corresponding to bc/losses.py
+
+# Dataset
+root_dir: "expert_data/dataset/conditional/U_shape"
+nb_datapoints: -1
+resize: [256, 256]
+split: 0
+spline_points: 1000
+shuffle: True
+s: 10
+
+# Model
+bc_backbone_params: # params according to bc/models.py
+    out_channels: 1
+
+# Sweep WANDB
+sweep_params:
+  metric: 
+    goal: minimize
+    name: val/bc
+  method: grid
+  parameters:
+    root_dir:
+      values: ["expert_data/dataset/conditional/U_shape"]
+    seed:
+      values: [42]
+    data_seed:
+      values: [ 45, 171,  31, 114,  43,  79,  93, 156,  12,  86,   7,  85,  51,
+        160, 191, 185, 126, 124,  61,   4, 132,  17, 157,  84, 102,  91,
+        145, 120, 189,  58, 101,  57,  75, 215, 183, 195,  70, 170, 213,
+        100, 241,   0, 245, 125,  11, 214, 238, 164,  15, 123]
+    train_test_val_split: 
+      values: [[0.8, 0.10, 0.10]]
+    lr:
+      values: [0.0005]
+    bc_backbone:
+      values: ["unet-skip-large"] # choices in bc/models.py
+    epochs: 
+      values: [160]
+    loss: 
+      values: ["bce"] # choices in bc/losses.py
+    batch_size:
+      values: [32]
+    spline_path:
+      values: [true]
+    obs: 
+      values: ["full"] # choices = ("full": egm+start+target, "semi": egm+target, "slim": egm)

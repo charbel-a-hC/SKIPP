@@ -1,0 +1,64 @@
+# TEX Compile output
+*.aux
+*.fls
+*.fdb_latexmk
+*.log
+*.out
+*.synctex.gz
+*.bbl
+*.blg
+*.brf
+*.dvi
+*.out.ps
+*.toc
+
+# VsCode and Clion
+.vscode/
+.idea/
+.clwb/
+.venv/
+
+**/__pycache__
+
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Weights and Biases Cache
+wandb/
+
+# stored data on exec
+*.zip
+
+runs/
+models/
+expert_data/
